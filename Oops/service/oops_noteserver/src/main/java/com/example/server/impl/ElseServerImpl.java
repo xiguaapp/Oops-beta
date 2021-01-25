@@ -19,7 +19,7 @@ public class ElseServerImpl implements ElseServer {
     @Override
     public boolean hklq(String phone, String code) {
         //链接阿里云
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4G92Y3pq7eS3QWMiT4fA", "k9zwymDQv34vkk1lN8AL2HhPxYFcpx");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-", "", "");
         IAcsClient client = new DefaultAcsClient(profile);
 
         System.out.println("手机号"+phone+"短信"+code);
@@ -28,15 +28,15 @@ public class ElseServerImpl implements ElseServer {
         CommonRequest request = new CommonRequest();
 
         request.setSysMethod(MethodType.POST);
-        request.setSysDomain("dysmsapi.aliyuncs.com");//不要动
-        request.setSysVersion("2017-05-25"); //不要动
-        request.setSysAction("SendSms");
+        request.setSysDomain("");//不要动
+        request.setSysVersion(""); //不要动
+        request.setSysAction("");
 
         request.putQueryParameter("PhoneNumbers",phone);
         //签名
-        request.putQueryParameter("SignName", "ABC商城");
+        request.putQueryParameter("SignName", "");
         //模板
-        request.putQueryParameter("TemplateCode", "SMS_205883284");
+        request.putQueryParameter("TemplateCode", "");
         //构建一个短信的验证码
         HashMap<String, Object> map = new HashMap<>();
         map.put("code",code);
