@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>订单确认</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td th:text=" ${'产品编号:'+order.id}">
+        </td>
+    </tr>
+    <tr>
+        <td th:text="${'产品名称'+p.name}">
+
+        </td>
+    </tr>
+    <tr>
+        <td th:text="${'产品价格: '+p.price }">
+        </td>
+    </tr>
+    <tr>
+        <td th:text="${'购买个数：'+order.buyCounts}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form id="payForm"  method="post" th:action="@{/alipay/gopay}">
+                <input type="hidden" name="orderid" th:value="${order.id}" />
+                <input type="submit" value="前往支付宝进行支付">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

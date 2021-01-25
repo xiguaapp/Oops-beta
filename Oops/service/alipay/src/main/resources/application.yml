@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.98.241.211:3306/douyin?serverTimezone=UTC&allowMultiQueries=true
+    username: root
+    password: l123456
+    #指定数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    # 数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  thymeleaf:
+    suffix: .html
+    prefix:
+      classpath: /templates/
+    cache: false
+
+
+#配置文件式开发
+mybatis:
+  #全局配置文件的位置
+  config-location: classpath:mybatis/mybatis-config.xml
+  #所有sql映射配置文件的位置
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+server:
+  port: 9999

@@ -1,0 +1,19 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: nacos-supermarket-note-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      eager: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

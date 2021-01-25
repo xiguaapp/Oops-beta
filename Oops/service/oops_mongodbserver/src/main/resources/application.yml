@@ -1,0 +1,30 @@
+server:
+  port: 9004
+
+feign:
+  sentinel:
+    enabled: true
+
+spring:
+  application:
+    name: nacos-supermarket-mongodb-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      eager: true
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+
+
+# 设置 feign 客户端超时时间（OpenFeign 默认支持 ribbon）
+ribbon:
+  # 值的是建立连接所用的时间，使用与网络状态正常的情况，两端连接所用的时间
+  ReadTimeout: 50000
+  # 指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectionTimeout: 50000

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.PaymentDao">
+    <select id="record" resultType="com.example.po.OpUserconstEntity">
+      SELECT * FROM op_userconst WHERE userid=#{userId}
+   </select>
+
+    <!--添加礼物的购买记录-->
+    <insert id="addrecord">
+   INSERT INTO `douyin`.`op_userconst`
+	(
+	`userId`,
+	`type`,
+	`money`
+	)
+	VALUES
+	(
+	#{userId},
+	#{type},
+	#{money}
+	);
+    </insert>
+</mapper>

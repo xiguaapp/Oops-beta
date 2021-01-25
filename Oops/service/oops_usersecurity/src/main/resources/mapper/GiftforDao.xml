@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.GiftforDao">
+
+      <!--送礼物-->
+       <select id="brush" resultType="com.example.po.Op_giftfor">
+       SELECT * FROM op_giftfor g,op_intermediate i WHERE i.upuserid=#{userid} AND i.upuserid=g.userid GROUP BY gid ;
+       </select>
+
+       <!--收礼物-->
+       <select id="obtain" resultType="com.example.po.Op_giftfor">
+           SELECT * FROM op_giftfor g,op_intermediate i WHERE i.inuserid=#{userid} AND i.inuserid=g.inuserid GROUP BY gid ;
+       </select>
+
+       <!--添加礼物记录 -->
+    <insert id="addgif">
+        INSERT INTO `douyin`.`op_giftfor`
+	(
+	`gname`,
+	`R`,
+	`money`,
+	`userid`,
+	`water`,
+	`inuserid`
+	)
+	VALUES
+	(
+	#{gname},
+	#{R},
+	#{money},
+	#{userid},
+	#{water},
+	#{inuserid}
+	);
+    </insert>
+
+    <!--添加礼物中间表记录 -->
+    <insert id="addinterme">
+     INSERT INTO `douyin`.`op_intermediate`
+	(`inuserid`,
+	 `upuserid`)
+	VALUES (#{inuserid}, #{userid});
+    </insert>
+</mapper>

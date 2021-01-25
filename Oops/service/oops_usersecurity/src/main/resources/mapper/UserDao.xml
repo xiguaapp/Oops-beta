@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.UserDao">
+
+<!--   <resultMap id="roleMap" type="com.example.po.OpUserEntity">-->
+<!--       &lt;!&ndash;用户表&ndash;&gt;-->
+<!--       <result property="userId" column="userId"/>-->
+<!--       <result property="userName" column="userName"/>-->
+<!--       <result property="lvl" column="lvl"/>-->
+<!--       <result property="userConst" column="userConst"/>-->
+<!--       <result property="userCreateTime" column="userCreateTime"/>-->
+<!--       <result property="userUpdateTime" column="userUpdateTime"/>-->
+<!--       <result property="deleted" column="deleted"/>-->
+<!--       <result property="baned" column="baned"/>-->
+<!--       <result property="vid" column="vid"/>-->
+<!--       <result property="integral" column="integral"/>-->
+<!--       <result property="head" column="head"/>-->
+<!--       <result property="phone" column="phone"/>-->
+<!--       <result property="oid" column="oid"/>-->
+<!--       <result property="expire" column="expire"/>-->
+<!--&lt;!&ndash;       &lt;!&ndash;会员信息&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;       <association property="op_userconst"  column="cid"&ndash;&gt;-->
+<!--&lt;!&ndash;                    javaType="com.example.po.Op_Userconst">&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="cid" column="cid"/>&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="userId" column="userId"/>&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="type" column="type"/>&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="payTime" column="payTime"/>&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="v_id" column="v_id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="expire" column="expire"/>&ndash;&gt;-->
+<!--&lt;!&ndash;           <result property="money" column="money"/>&ndash;&gt;-->
+<!--&lt;!&ndash;       </association>&ndash;&gt;-->
+<!--   </resultMap>-->
+
+    <!--查询数据-->
+    <select id="list_user" resultType="com.example.po.OpUserEntity">
+        select * from op_user
+    </select>
+
+     <!--用户注册-->
+    <insert id="Usersadd" parameterType="com.example.po.OpUserEntity" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO `douyin`.`op_user`
+                (
+                `userName`,
+                `userPass`,
+                `lvl`,
+                `userConst`,
+                `userCreateTime`,
+                `userUpdateTime`,
+                `deleted`,
+                `baned`,
+                `vid`,
+                `integral`,
+                `head`,
+                `phone`
+                )
+                VALUES
+                (
+                #{userName},
+                #{userPass},
+                #{lvl},
+                #{userConst},
+                #{userCreateTime},
+                #{userUpdateTime},
+                #{deleted},
+                #{baned},
+                #{vid},
+                #{integral},
+                #{head},
+                #{phone}
+                );
+    </insert>
+
+     <!--用户登录 短信或密码验证-->
+    <select id="login" resultType="com.example.po.OpUserEntity">
+        SELECT * FROM op_user WHERE 1=1 AND phone=#{phone}
+        <if test="pwd !=null and pwd!='' ">
+            AND userPass=#{pwd}
+        </if>
+    </select>
+
+    <!--查询个人信息-->
+    <select id="findpslhpage" resultType="com.example.po.OpUserEntity">
+        SELECT *  FROM  op_user WHERE userId=#{userId}
+    </select>
+
+
+    <!--修改密码 条件用户id+电话号码-->
+    <update id="change">
+    UPDATE `douyin`.`op_user`
+	SET
+	`userPass` = #{userPass}
+	WHERE
+	`userId`=#{userId} AND `phone`=#{phone};
+    </update>
+
+    <!--修改个人资料-->
+    <update id="amend">
+        UPDATE `douyin`.`op_user`
+	     SET
+	     `userName` = #{userName} ,
+	     `head` = #{head} ,
+	     `signature` = #{signature}
+	     WHERE
+	      `userId` = #{uid}
+    </update>
+
+    <!--修改密码-->
+    <update id="changepwd">
+         UPDATE `douyin`.`op_user`
+	     SET
+	     `userPass` = #{pass}
+	      WHERE
+	     `userId` =#{uid} and `phone` = #{Mobile};
+    </update>
+<!--      <select id="login" parameterType="String" resultType="Integer">-->
+<!--              SELECT COUNT(0) FROM op_user WHERE 1=1 AND phone=#{phone}-->
+<!--               <if test="pwd !=null and pwd!='' ">-->
+<!--                       AND userPass=#{pwd}-->
+<!--               </if>-->
+<!--      </select>-->
+
+
+
+    <!--	扣除R币-->
+    <update id="upuserConst">
+	UPDATE `douyin`.`op_user`
+	SET
+	`userConst`=userConst-#{r}
+	WHERE
+	`userId` = #{userId};
+   </update>
+
+</mapper>

@@ -1,0 +1,101 @@
+#gatewa
+server:
+  port: 8801
+spring:
+  application:
+    name: nacos-supermarket-gateway-abc
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeader: "*"
+
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: nacos-provider-ad
+          uri: lb://nacos-supermarket-User-server
+          predicates:
+            - Path=/user/filter/**
+            - Method=GET,POST
+          filters:
+            - GatewayFilter
+
+        - id: nacos-provider-ad
+          uri: lb://nacos-supermarket-User-server
+          predicates:
+            - Path=/user/filtration/**
+            - Method=GET,POST
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-note-server
+          predicates:
+            - Path=/note/filter/**
+            - Method=GET,POST
+          filters:
+            - GatewayFilter
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-video-server
+          predicates:
+            - Path=/videoserver/filtration/**
+            - Method=GET,POST
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-mongodb-server
+          predicates:
+            - Path=/mongo/**
+            - Method=GET,POST
+          filters:
+            - GatewayFilter
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-mongodb-server
+          predicates:
+            - Path=/mongo/recommend
+            - Method=GET,POST
+          filters:
+            - GatewayFilter
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-User-server
+          predicates:
+            - Path=/user/lo
+            - Method=GET,POST
+
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-pay-server
+          predicates:
+            - Path=/pay/**
+            - Method=GET,POST
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-Solr-server
+          predicates:
+            - Path=/solrse/**
+            - Method=GET,POST
+
+        - id: nacos-provider
+          uri: lb://nacos-supermarket-gif-server
+          predicates:
+            - Path=/gift/filtration/*
+            - Method=GET,POST
+          filters:
+            - GatewayFilter
+
+
+
+# 设置 feign 客户端超时时间（OpenFeign 默认支持 ribbon）
+ribbon:
+  # 值的是建立连接所用的时间，使用与网络状态正常的情况，两端连接所用的时间
+  ReadTimeout: 50000
+  # 指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectionTimeout: 50000

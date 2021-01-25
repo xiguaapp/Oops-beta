@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>所有商品</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>
+            产品编号
+        </td>
+        <td>
+            产品名称
+        </td>
+        <td>
+            产品价格
+        </td>
+        <td>
+            操作
+        </td>
+    </tr>
+    <tr th:each="pr:${allproduct}">
+        <td th:text="${pr.id}"></td>
+        <td th:text="${pr.name}"></td>
+        <td th:text="${pr.price}"></td><!--这里价钱应该是数据库查询，这里为了方便就直接传参了-->
+        <td><a th:href="@{'/alipay/buy/'+${pr.id}+'/'+${pr.price}}">购买</a></td>
+    </tr>
+</table>
+<hr>
+<a th:href="@{/alipay/allorder}">所有订单</a>
+</body>
+</html>

@@ -1,0 +1,4 @@
+#激活 不激活默认走这个
+spring:
+  profiles:
+    active: dev

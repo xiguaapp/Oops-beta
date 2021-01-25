@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.AttentionDao">
+
+<!--    //关注人id-->
+<!--    private Integer attentionuid;-->
+<!--    //被关注人id-->
+<!--    private Integer beattentionuid;-->
+<!--    //用户表-->
+<!--    private List<Op_Userconst> op_userconst;-->
+       <resultMap id="roleMap" type="com.example.po.OpUserEntity">
+           <!--用户表-->
+           <id property="userId" column="userId"/>
+           <result property="userName" column="userName"/>
+           <result property="lvl" column="lvl"/>
+           <result property="userConst" column="userConst"/>
+           <result property="userCreateTime" column="userCreateTime"/>
+           <result property="userUpdateTime" column="userUpdateTime"/>
+           <result property="deleted" column="deleted"/>
+           <result property="baned" column="baned"/>
+           <result property="vid" column="vid"/>
+           <result property="integral" column="integral"/>
+           <result property="head" column="head"/>
+           <result property="phone" column="phone"/>
+           <result property="oid" column="oid"/>
+           <result property="expire" column="expire"/>
+           <!--关注 信息-->
+           <association property="opAttentionEntity"
+                        javaType="com.example.po.OpAttentionEntity">
+               <result property="attentionuid" column="attentionUid"/>
+               <result property="beattentionuid" column="beAttentionUid"/>
+           </association>
+       </resultMap>
+    <!--查询关注-->
+    <select id="attention" resultMap="roleMap">
+        SELECT u.userId,u.userName,u.lvl,u.head,u.userConst,u.userCreateTime,u.deleted,u.baned,u.integral,u.expire  FROM op_user u,op_attention a
+        WHERE  a.attentionUid=#{attentionUid} AND u.userid=a.beAttentionUid
+    </select>
+
+    <!--查询粉丝-->
+    <select id="fans" resultMap="roleMap">
+        SELECT u.userId,u.userName,u.lvl,u.head,u.userConst,u.userCreateTime,u.deleted,u.baned,u.integral,u.expire FROM op_user u,op_attention a
+        WHERE  a.attentionUid=u.userid AND beattentionuid=#{beattentionuid}
+    </select>
+
+
+    <!--判断这个用户是否关注了他-->
+    <select id="verdict" resultType="com.example.po.OpAttentionEntity">
+        SELECT * FROM op_attention a
+        WHERE  a.attentionUid=#{auserid} AND a.beAttentionUid=#{buserid}
+    </select>
+
+     <!--添加关注-->
+    <insert id="inverdict">
+        INSERT INTO `douyin`.`op_attention`
+	(`attentionUid`,
+	`beAttentionUid`
+	)
+	VALUES
+	(#{attentionUid},
+	 #{beAttentionUid}
+	);
+    </insert>
+    <!--删除关注-->
+    <delete id="deverdict">
+         DELETE FROM `douyin`.`op_attention`
+	     WHERE
+	    `attentionUid` = #{attentionUid} and
+	    `beAttentionUid`=#{beAttentionUid};
+    </delete>
+</mapper>

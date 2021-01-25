@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.BookDao">
+    <select id='findAll' resultType="com.example.po.Book">
+ 		select * from book
+ 	</select>
+
+	<select id="allsolr" resultType="com.example.po.UserVideo">
+		SELECT (@rowNO := @rowNo+1) AS aout,username,head,videoId,videoUrl,videoCount,videoDescript,videoTime,signature,userid
+           FROM  (
+              SELECT u.userid AS userid,u.username AS username,u.head AS head, v.videoId AS videoId ,v.videoUrl AS videoUrl
+              ,v.videoCount AS videoCount, v.videoDescript AS videoDescript,v.videoTime AS videoTime,u.signature AS signature
+                  FROM op_user u
+                   LEFT JOIN op_video v ON u.userid=v.userId
+                    ) NAME, (SELECT @rowNO :=0) username;
+	</select>
+</mapper>

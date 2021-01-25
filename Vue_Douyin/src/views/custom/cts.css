@@ -1,0 +1,272 @@
+.sdf{
+    font-size: 28px;
+    color: #000000;
+    position: absolute; 
+    left: 34%;
+    top: 14%;
+  }
+  
+  .sdt{
+  
+    position: absolute; 
+    left: 43%;
+    top: 24%;
+  }
+  
+  .sfg{
+     position: absolute; 
+    left: 0%;
+    top: 42%;
+  }
+  
+    .el-drawer {
+      position: absolute;
+      box-sizing: border-box;
+      background-color: #808080;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+  }
+  
+  
+  .user{
+      width: 100%;
+      display: block;
+      margin-top: -2%;
+  }
+  
+  element.style {
+      height: 58%;
+  }
+  
+  
+  
+  
+  .return .r{
+    float:left;
+  }
+  .return .w{
+  position: absolute; 
+  left: 85%;
+  top: 34%;
+  }
+  
+  .zwe p{
+    text-align: center;
+    display: inline-block;
+    width: 33%;
+    margin-bottom:-4%;
+    margin-top: 10%;
+  }
+  
+  .return .b{
+     position: absolute;   
+     left: 45%;
+     top: 34%;
+      color: #fff;
+      font-size: 18px;
+  }
+  
+  .msg-list span{
+     position: relative;   
+     left: 3%;
+     top: 34%;
+     bottom: 33px;
+      color: rgb(24, 3, 3);
+      font-size: 18px;
+  } 
+  
+  button{
+    color:#ffff;
+    background-color: #f78989;
+  }
+  
+  button span{
+     color:#ffff;
+    background-color: #f78989;
+  };
+  
+  
+  .resource{
+      display: block;
+      margin-top: 19%;
+      margin-left: 90%;
+       
+  }
+  .zsd{
+      position: absolute;
+      left: 6%;
+      top: 131%;
+      color: #fff;
+      font-size: 13px;
+      width: 88%;
+      height: 201%;
+      background-image: url("/img/bq.a86aedb1.jpg"); background-repeat: no-repeat; background-size: 100% 100%;
+    
+  }
+  .zd{
+    position: absolute;
+      left: 11%;
+      top: 31%;
+  }
+  .zz{
+    position: absolute;
+      left: 34%;
+      top: 144%;
+      font-size: 18px;
+  }
+  
+  .z{
+    position: absolute;
+      left: 64%;
+      top: 31%;
+  }
+  .zl{
+    position: absolute;
+      left: 34%;
+      top: 144%;
+      font-size: 18px;
+  }
+  .come{
+  position: absolute;
+      left: 6%;
+      top: 364%;
+  }
+  .total{
+  position: absolute;
+      left: 67%;
+      top: 364%;
+  
+  }
+  .show{
+    position: absolute;
+      left: 6%;
+      top: 437%;
+      width: 88%;
+      height: 451%;
+   
+    filter:alpha(opacity=50);  
+    opacity:0.5; 
+    background-color:#31383185;
+  }
+  .deposit{
+      position:relative;
+      left: 72%;
+          transform:translateY(-50%);/**上移元素**/
+  }
+  .zks{
+     position:relative;
+        left: 10%;
+      transform: translateY(27%);
+  }
+  
+  
+  
+  
+   .top-bar{
+      position: fixed;
+      /* background-color:black; */
+      height:55px;
+      width:100%;
+      font-size:18px;
+      color:#cccccc;
+      padding:20px;
+      display: flex;
+      box-sizing: border-box;
+      /* 使用层级关系让被视频盖住的部分显示出来 */
+      z-index: 999;
+    }
+  
+  .v-modal {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .5;
+      background: #000;
+  }
+    a{
+        COLOR: #ffffff;
+    }
+    .ann{
+      width: 85%;
+      height: 10%;
+      position: absolute;
+      left: 8%;
+      top: 85%;
+      font-size: 16px;
+    }
+  
+    .tite{
+      width: 85%;
+      height: 10%;
+      position: absolute;
+      left: 45%;
+      top: 5%;
+      font-size: 20px;
+    }
+      .msg-list img{
+      width:50px;
+      height:50px;
+      border-radius: 50%;
+    }
+  
+    .rd{
+      display: block;
+  }
+  
+   .el-tabs__item {
+      padding: 0 20px;
+      height: 50px;
+      box-sizing: border-box;
+      line-height: 40px;
+      display: inline-block;
+      list-style: none;
+      font-size: 18px;
+      font-weight: 500;
+      color: #303133;
+      position: relative;
+  }
+  .user{
+      display: block;
+      text-align: center;
+      margin-top: -2%;
+  }
+  
+  .zds{
+       
+      display: block;
+  
+      margin-top: 4%;
+      margin-left: 1%;
+  }
+  
+  .fan{
+     position: relative;
+     top: 13px;
+     left: 12px;
+         COLOR: #030100;
+  }
+  
+    .user-des{
+      flex: 1;
+      height:60px;
+    }
+    .user-des .top{
+      font-size: 14px;
+      margin-left: 10px;
+      display: flex;
+      justify-content: space-between;
+      line-height: 25px;
+    }
+    .top-msg{
+      color: #666;
+      align-items: center;
+    }
+    .no-see{
+      width:8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color:#face15 ;
+    }

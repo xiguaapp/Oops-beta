@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.VideoDao">
+
+    <select id="personage" resultType="com.example.po.Op_Video">
+        SELECT * FROM op_video WHERE userId=#{userId}
+    </select>
+
+    <!--根据视频id查询视频-->
+    <select id="peVideo" resultType="com.example.po.Op_Video">
+          SELECT * FROM op_video WHERE videoId=#{videoId}
+    </select>
+
+    <select id="getListByWeight" resultType="com.example.po.VideObjet">
+--           SELECT * FROM op_video  order  by weight limit 100-->
+ SELECT o.videoId,o.userId,o.videoUrl,o.videoCount,o.weight,o.videoStatus,o.videoTime,o.videoDescript,o.oosId,
+        u.username,u.userId,u.head
+ FROM op_video o ,op_user u   WHERE  u.userId=o.userId   ORDER  BY o.weight LIMIT 100
+    </select>
+
+    <select id="getListByCount" resultType="com.example.po.VideObjet">
+--           SELECT * FROM op_video order  by videoCount limit 100-->
+ SELECT o.videoId,o.userId,o.videoUrl,o.videoCount,o.weight,o.videoStatus,o.videoTime,o.videoDescript,o.oosId,
+        u.username,u.userId,u.head
+ FROM op_video o ,op_user u   WHERE  u.userId=o.userId   ORDER  BY o.videoCount LIMIT 100
+    </select>
+
+<!--    &#45;&#45;         SELECT o.videoId,o.userId,o.videoUrl,o.videoCount,o.weight,o.videoStatus,o.videoTime,o.videoDescript,o.oosId FROM op_video o,op_attention a-->
+<!--    &#45;&#45;         WHERE  a.attentionUid=#{attentionUid} AND o.userid=a.beAttentionUid-->
+<!--    &#45;&#45;-->
+    <!--关注人的视频-->
+    <select id="attentionlist" resultType="com.example.po.VideObjet">
+        SELECT o.videoId,o.userId,o.videoUrl,o.videoCount,o.weight,o.videoStatus,o.videoTime,o.videoDescript,o.oosId,
+        u.username,u.userId,u.head
+        FROM op_video o,op_attention a,op_user u
+        WHERE a.attentionUid=2 AND o.userid=a.beAttentionUid AND  u.userId=o.userId
+    </select>
+
+    <!--修改数据库的喜欢数量-->
+    <update id="updatecount">
+    UPDATE `douyin`.`op_video`
+	SET
+	`videoCount` = #{videoCount}
+	WHERE
+	`videoId` = #{videoId} ;
+    </update>
+
+    <!--添加视频-->
+    <insert id="invideo">
+    INSERT INTO `douyin`.`op_video`
+	(`userId`,
+	`videoUrl`,
+	`videoDescript`,
+	`oosId`
+	)
+	VALUES
+	(
+	#{userId},
+	#{videoUrl},
+	#{videoDescript},
+	#{oosId}
+	);
+
+    </insert>
+
+</mapper>

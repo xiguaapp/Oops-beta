@@ -1,0 +1,83 @@
+server:
+  port: 9003
+
+feign:
+  sentinel:
+    enabled: true
+
+spring:
+  application:
+    name: nacos-supermarket-video-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      eager: true
+
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      # 最大置总上传的数据大小 ：默认10M
+      max-request-size: 1024MB
+
+  rabbitmq:
+    virtual-host: /
+    host: localhost
+    username: guest
+    password: guest
+
+  redis:
+    # redis数据库索引(默认为0)，我们使用索引为3的数据库，避免和其他数据库冲突
+    database: 1
+    # redis服务器地址（默认为loaclhost）
+    host: 127.0.0.1
+    # redis端口（默认为6379）
+    post: 6379
+    # redis访问密码（默认为空）
+    # redis连接超时时间（单位毫秒）
+    timeout: 1000
+
+    data:
+      mongodb:
+        uri: mongodb://localhost:27017/test
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.98.241.211:3306/douyin?serverTimezone=UTC&allowMultiQueries=true
+    username: root
+    password: l123456
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.example.po
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI4G92Y3pq7eS3QWMiT4fA
+    accessKeySecret: k9zwymDQv34vkk1lN8AL2HhPxYFcpx
+    bucketName: guil-file-200211
+    #视频点播
+  vod:
+    file:
+      keyid: LTAI4G92Y3pq7eS3QWMiT4fA
+      keysecret: k9zwymDQv34vkk1lN8AL2HhPxYFcpx
+#mq:
+#  config:
+#    exchange: direct
+#    queue: q11
+#    routing: routingkey

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.repositry.GiftRepositry">
+    <select id="giftlist" resultType="com.example.po.OpGiftEntity">
+        select * from  op_gift
+    </select>
+
+    <!--查询背包的礼物-->
+    <select id="gifbags" resultType="com.example.po.OpGiftEntity">
+          SELECT g.money,g.giftId,g.gifName,g.gifPrice,g.gifImageUrl,b.giftCount FROM op_gift g,op_bags b WHERE g.giftId=b.gifId
+          AND b.userid=#{userid} AND b.giftCount!=0
+    </select>
+
+    <!--送出去的礼物从背包里扣 用户id,礼物id-->
+    <update id="upgifbags">
+    UPDATE `douyin`.`op_bags`
+	SET
+	`giftCount` = giftCount-1
+	WHERE
+	`userId` = #{userId} and
+	`gifId` = #{gifId};
+    </update>
+
+    <!--修改礼物数量-->
+    <update id="adgifbags">
+    UPDATE `douyin`.`op_bags`
+	SET
+	`giftCount` = giftCount+1
+	WHERE
+	`userId` = #{userId} and
+	`gifId` = #{gifId};
+    </update>
+
+    <!--判断用户礼物id是否已经购买已经购买就修改数量-->
+    <select id="isbags" resultType="com.example.po.OpGiftEntity">
+        select * FROM op_bags where gifId=#{gifid}  AND userid=#{userid}
+    </select>
+
+    <!--添加礼物到背包-->
+    <insert id="addbeibao">
+     INSERT INTO `douyin`.`op_bags`
+	(`userId`,
+	 `gifId`
+	)
+	VALUES
+	(
+	  #{userId},
+	  #{gifId}
+	);
+    </insert>
+
+</mapper>
