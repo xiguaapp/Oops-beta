@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.98.241.211:3306/douyin?serverTimezone=UTC&allowMultiQueries=true
-    username: root
-    password: l123456
+    url: 
+    username: 
+    password: 
 
   application:
     name: nacos-supermarket-gif-server

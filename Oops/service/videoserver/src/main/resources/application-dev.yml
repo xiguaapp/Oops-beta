@@ -46,9 +46,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.98.241.211:3306/douyin?serverTimezone=UTC&allowMultiQueries=true
-    username: root
-    password: l123456
+    url: 
+    username: 
+    password: 
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml
@@ -67,15 +67,15 @@ management:
 
 aliyun:
   oss:
-    endpoint: oss-cn-beijing.aliyuncs.com
-    accessKeyId: LTAI4G92Y3pq7eS3QWMiT4fA
-    accessKeySecret: k9zwymDQv34vkk1lN8AL2HhPxYFcpx
-    bucketName: guil-file-200211
+    endpoint: 
+    accessKeyId:
+    accessKeySecret: 
+    bucketName: 
     #视频点播
   vod:
     file:
-      keyid: LTAI4G92Y3pq7eS3QWMiT4fA
-      keysecret: k9zwymDQv34vkk1lN8AL2HhPxYFcpx
+      keyid: 
+      keysecret: 
 #mq:
 #  config:
 #    exchange: direct
