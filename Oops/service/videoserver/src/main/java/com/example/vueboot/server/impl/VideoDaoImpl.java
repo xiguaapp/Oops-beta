@@ -59,8 +59,8 @@ public class VideoDaoImpl implements VideoServer {
         return videoDao.updatecount(map);
     }
 
-    String accessKeyId = "LTAI4G92Y3pq7eS3QWMiT4fA";
-    String accessKeySecret = "k9zwymDQv34vkk1lN8AL2HhPxYFcpx";
+    String accessKeyId = "";
+    String accessKeySecret = "";
 
     @Override
     public String uploadVideoAly(MultipartFile file) {
