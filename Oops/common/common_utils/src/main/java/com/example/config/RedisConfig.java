@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.net.UnknownHostException;
 
 /**
- * @author : 肖凯
+ * @author : xiguaapp
  * @date : 2020/10/13 20:41String
  */
 @Configuration
